@@ -1,12 +1,12 @@
 package com.financial.tracker.controller;
 
+import com.financial.tracker.dto.ExpenseCategoryDto;
 import com.financial.tracker.entity.ExpenseCategory;
 import com.financial.tracker.service.ExpenseCategoryService;
 import org.springframework.http.ResponseEntity;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
+
+import java.util.List;
 
 @RestController
 @RequestMapping("/api/categories")
@@ -19,7 +19,12 @@ public class ExpenseCategoryController {
     }
 
     @PostMapping("/create")
-    public ResponseEntity<ExpenseCategory> createCategory(@RequestBody String name) {
-        return ResponseEntity.ok(expenseCategoryService.createExpenseCategory(name));
+    public ResponseEntity<ExpenseCategory> createCategory(@RequestBody ExpenseCategoryDto expenseCategoryDto) {
+        return ResponseEntity.ok(expenseCategoryService.createExpenseCategory(expenseCategoryDto.getName()));
+    }
+
+    @GetMapping("/getAll")
+    public ResponseEntity<List<ExpenseCategory>> getAll(){
+        return ResponseEntity.ok(expenseCategoryService.getAll());
     }
 }

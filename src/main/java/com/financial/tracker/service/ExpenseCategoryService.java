@@ -4,6 +4,8 @@ import com.financial.tracker.entity.ExpenseCategory;
 import com.financial.tracker.repository.ExpenseCategoryRepository;
 import org.springframework.stereotype.Service;
 
+import java.util.List;
+
 @Service
 public class ExpenseCategoryService {
 
@@ -23,5 +25,9 @@ public class ExpenseCategoryService {
         category.setActive(true);
 
         return expenseCategoryRepository.save(category);
+    }
+
+    public List<ExpenseCategory> getAll() {
+        return expenseCategoryRepository.findAll();
     }
 }
